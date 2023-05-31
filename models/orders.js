@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const sequelize = require('../sequelize');
 const uuid = require('uuid')
 
-const Orders = sequelize.define('Orders', {
+const Orders = sequelize.define('order', {
     id: {
         type: Sequelize.STRING,
         primaryKey: true,
@@ -41,8 +41,13 @@ const Orders = sequelize.define('Orders', {
         type: Sequelize.STRING,
         allowNull: false,
     },
-    created: {
-        type: Sequelize.DATE
+    createdAt: {
+        field: 'created_at',
+        type: DataTypes.DATE,
+    },
+    updatedAt: {
+        field: 'updated_at',
+        type: DataTypes.DATE,
     },
 });
 

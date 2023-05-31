@@ -1,22 +1,29 @@
-const Sequelize = require('sequelize');
-// const sequelize = require('../sequelize');
-const sequelize = new Sequelize()
+const { DataTypes } = require('sequelize');
+const { sequelize } = require('./../database')
 const uuid = require('uuid')
 
-const Location = Sequelize.define('Location', {
+const Location = sequelize.define('location', {
     id: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         primaryKey: true,
         defaultValue: uuid.v4
     },
     latitude: {
-        type: Sequelize.DOUBLE,
+        type: DataTypes.DOUBLE,
         allowNull: false
     },
     longitude: {
-        type: Sequelize.DOUBLE,
+        type: DataTypes.DOUBLE,
         allowNull: false
-    }
+    },
+    createdAt: {
+        field: 'created_at',
+        type: DataTypes.DATE,
+    },
+    updatedAt: {
+        field: 'updated_at',
+        type: DataTypes.DATE,
+    },
 });
 
 module.exports = Location;
