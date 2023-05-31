@@ -5,5 +5,3 @@ const locationController = require('./../../controllers/locations')
 module.exports = () => {
     router.get('/', locationController.getLocations)
 }
-// router.get('/:id')
-// router.post('/')
