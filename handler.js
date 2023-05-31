@@ -1,5 +1,4 @@
 const bcrypt = require('bcrypt');
-const mysql = require('mysql');
 const connection = require('./db');
 
 async function registerUser(req, res) {
@@ -68,7 +67,7 @@ function getUserByPhoneNumber(phoneNumber) {
 
 function saveUser(user) {
   return new Promise((resolve, reject) => {
-    connection.query('INSERT INTO users SET ?', user, (error, results) => {
+    connection.query('INSERT INTO users SET ?', { ...user, createdAt: new Date(), updatedAt: new Date() }, (error, results) => {
       if (error) {
         reject(error);
       } else {

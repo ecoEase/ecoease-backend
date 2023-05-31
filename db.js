@@ -2,9 +2,10 @@ const mysql = require('mysql');
 
 const connection = mysql.createConnection({
   host: 'localhost',
-  user: 'admin',
-  password: 'admin',
-  database: 'order',
+  user: 'root',
+  password: '',
+  database: 'order_db',
+  timezone: 'utc' // Menyamakan timezone dengan UTC untuk menghindari masalah dengan nilai default timestamp
 });
 
 connection.connect((error) => {

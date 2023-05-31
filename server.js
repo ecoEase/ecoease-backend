@@ -1,12 +1,14 @@
 const express = require('express');
-const routes = require('./routes');
+const registerRoutes = require('./routes/register');
+const locationRoutes = require('./routes/location');
 
 const app = express();
-const port = 9000;
 
 app.use(express.json());
-app.use('/', routes);
+app.use('/', registerRoutes);
+app.use('/locations', locationRoutes)
 
+const port = process.env.PORT || 8080;
 app.listen(port, () => {
-  console.log(`Server berjalan di http://localhost:${port}`);
+  console.log(`Server running on port ${port}`);
 });
