@@ -6,6 +6,7 @@ const detailTransactionRoutes = require('./routes/detailTransaction');
 const orderRoutes = require('./routes/order');
 const garbageRoutes = require('./routes/garbage');
 const mitraRoutes = require('./routes/mitra');
+const addressRoutes = require('./routes/address');
 //middleware
 const { requireAuth } = require('./middlewares/auth')
 
@@ -17,6 +18,7 @@ app.use('/locations', requireAuth, locationRoutes)
 app.use('/detail-transactions', requireAuth, detailTransactionRoutes)
 app.use('/orders', requireAuth, orderRoutes)
 app.use('/mitra', requireAuth, mitraRoutes);
+app.use('/address', requireAuth, addressRoutes);
 
 //garbage
 app.use('/garbage', garbageRoutes);
