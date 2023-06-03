@@ -1,13 +1,21 @@
 const express = require('express');
+//routes
 const registerRoutes = require('./routes/register');
 const locationRoutes = require('./routes/location');
-const { requireAuth } = require('./middlewares/auth')
+const detailTransactionRoutes = require('./routes/detailTransaction');
+const orderRoutes = require('./routes/order');
 const garbageRoutes = require('./routes/garbage');
+//middleware
+const { requireAuth } = require('./middlewares/auth')
+
 const app = express();
 
 app.use(express.json());
 app.use('/', registerRoutes);
 app.use('/locations', requireAuth, locationRoutes)
+app.use('/detail-transactions', requireAuth, detailTransactionRoutes)
+app.use('/orders', requireAuth, orderRoutes)
+
 //garbage
 app.use('/garbage', garbageRoutes);
 

@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const { sequelize } = require('./../database');
 const uuid = require('uuid');
 
-const Garbages = sequelize.define('Garbages', {
+const Garbages = sequelize.define('garbages', {
   id: {
     type: DataTypes.STRING,
     primaryKey: true,

@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "admin",
-    "password": "admin",
-    "database": "order",
+    "username": "root",
+    "password": "",
+    "database": "order_db",
     "host": "localhost",
     "dialect": "mysql"
   },

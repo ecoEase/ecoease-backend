@@ -1,44 +1,37 @@
-const Sequelize = require('sequelize');
-const sequelize = require('../sequelize');
-const uuid = require('uuid')
+const { DataTypes } = require('sequelize');
+const { sequelize } = require('./../database')
+const uuid = require('uuid');
+const Location = require('./location');
 
 const Orders = sequelize.define('order', {
     id: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         primaryKey: true,
         defaultValue: uuid.v4
     },
     status: {
-        type: Sequelize.ENUM('NOT_TAKEN', 'ON_PROGRESS', 'TAKEN', 'CANCELED'),
+        type: DataTypes.ENUM('NOT_TAKEN', 'ON_PROGRESS', 'TAKEN', 'CANCELED'),
         defaultValue: 'NOT_TAKEN',
         allowNull: false,
     },
     total_transaction: {
-        type: Sequelize.BIGINT,
+        type: DataTypes.BIGINT,
         allowNull: false,
     },
     user_id: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
     },
     mitra_id: {
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
-    mitra_id: {
-        type: Sequelize.STRING,
-        allowNull: false,
+        type: DataTypes.STRING,
+        allowNull: true,
     },
     location_id: {
-        type: Sequelize.STRING,
-        allowNull: false,
+        type: DataTypes.STRING,
+        allowNull: true,
     },
     address_id: {
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
-    address_id: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
     },
     createdAt: {
@@ -51,4 +44,8 @@ const Orders = sequelize.define('order', {
     },
 });
 
+//todo: add relation to address, user, mitra table
+Orders.hasOne(Location, {
+    foreignKey: 'id'
+})
 module.exports = Orders;
