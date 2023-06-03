@@ -7,17 +7,41 @@ const Location = require('../../models/location')
 
 const getOrders = async (req, res) => {
     try {
-        const orders = await Orders.findAll({
-            include: [
+        const { userId, mitraId, id } = req.query
+        const includeModels = [
+            { model: Garbages },
+            { model: Location },
+        ]
+        console.log(userId)
+        let orders
+
+        if (userId) {
+            orders = await Orders.findAll(
                 {
-                    model: Garbages
-                },
+                    include: includeModels,
+                    where: { user_id: userId }
+                }
+            )
+            return res.status(200).json({ data: orders })
+        } else if (mitraId) {
+            orders = await Orders.findAll(
                 {
-                    model: Location
-                },
-            ]
-        })
-        res.status(200).json({ data: orders })
+                    include: includeModels,
+                    where: { mitra_id: mitraId }
+                }
+            )
+        } else if (id) {
+            orders = await Orders.findByPk(id,
+                { include: includeModels },
+            )
+        } else {
+            orders = await Orders.findAll({
+                include: includeModels
+            })
+            return res.status(200).json({ data: orders })
+        }
+
+        return res.status(200).json({ data: orders })
     } catch (error) {
         res.status(500).send(error)
     }
@@ -47,8 +71,6 @@ const postNewOrder = async (req, res) => {
             return item
         })
 
-        console.log("detailTxnWithOrderId")
-
         const detailTransactionsResponse = await DetailTransaction.bulkCreate(detailTxnWithOrderId)
         // finish transaction
         await transaction.commit()
@@ -67,11 +89,53 @@ const postNewOrder = async (req, res) => {
     }
 }
 
-const postLocation = async (req, res) => {
+const updateStatus = async (req, res) => {
     try {
-        const location = req.body
-        const result = await Location.create(location)
-        res.status(200).json(result)
+        const { id, status } = req.body.id
+
+        if (status == 'NOT_TAKEN' || status == 'CANCELED') return res.status(500).json({ message: `can't update order status to ${status}!` })
+
+        if (mitra_id == null) return res.status(500).json({ message: "can't update order where is not picked by mitra" })
+
+        const result = await Orders.update(
+            { status: status },
+            { where: { id: id } }
+        )
+        res.status(200).json({ data: result })
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}
+
+const pickOrder = async (req, res) => {
+    try {
+        const { id, mitra_id } = req.body
+        //check if order has picked by other or not
+        const order = await Orders.findByPk(id)
+        if (order.mitra_id != null) return res.status(500).json({ message: "this order already picked by other!" })
+
+        const result = await Orders.update(
+            { status: 'TAKEN', mitra_id: mitra_id },
+            { where: { id: id } }
+        )
+        res.status(200).json({ data: result })
+    } catch (error) {
+        res.status(500).json({ message: error })
+    }
+}
+
+const canceledOrder = async (req, res) => {
+    try {
+        const { id, mitra_id } = req.body
+        const order = await Orders.findByPk(id)
+
+        if (order.mitra_id != null && order.mitra_id != mitra_id) return res.status(500).json({ message: "can't canceled order when order is already picked!" })
+
+        const result = await Orders.update(
+            { status: 'CANCELED' },
+            { where: { id: id } }
+        )
+        res.status(200).json({ data: result })
     } catch (error) {
         res.status(500).json(error)
     }
@@ -81,4 +145,7 @@ module.exports = {
     getOrders,
     postOrder,
     postNewOrder,
+    updateStatus,
+    pickOrder,
+    canceledOrder,
 }

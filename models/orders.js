@@ -10,7 +10,7 @@ const Orders = sequelize.define('order', {
         defaultValue: uuid.v4
     },
     status: {
-        type: DataTypes.ENUM('NOT_TAKEN', 'ON_PROGRESS', 'TAKEN', 'CANCELED'),
+        type: DataTypes.ENUM('NOT_TAKEN', 'TAKEN', 'ON_PROCESS', 'FINISHED', 'CANCELED'),
         defaultValue: 'NOT_TAKEN',
         allowNull: false,
     },

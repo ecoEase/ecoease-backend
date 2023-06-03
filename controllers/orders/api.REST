@@ -1,0 +1,17 @@
+GET http://localhost:8080/orders HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.avoE0f7ogWu5Wntyh8J8QfkYE6YVHo8AyW7mO_Ztas8
+###
+GET http://localhost:8080/orders?id=2587ca1c-bce0-4dc5-8ca0-2282712eaafd HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.avoE0f7ogWu5Wntyh8J8QfkYE6YVHo8AyW7mO_Ztas8
+###
+GET http://localhost:8080/orders?userId=test-id HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.avoE0f7ogWu5Wntyh8J8QfkYE6YVHo8AyW7mO_Ztas8
+
+###
+GET http://localhost:8080/orders?mitraId=asdasd HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.avoE0f7ogWu5Wntyh8J8QfkYE6YVHo8AyW7mO_Ztas8
+
+
+###
+PUT http://localhost:8080/pickup HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.avoE0f7ogWu5Wntyh8J8QfkYE6YVHo8AyW7mO_Ztas8

@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const { sequelize } = require('./../database');
+const { DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 
 const User = sequelize.define('User', {
@@ -39,8 +40,8 @@ const User = sequelize.define('User', {
     unique: true,
   },
 });
-  //hash password
-  User.beforeCreate(async (user) => {
+//hash password
+User.beforeCreate(async (user) => {
   const hashedPassword = await bcrypt.hash(user.password, 10);
   user.password = hashedPassword;
 });
