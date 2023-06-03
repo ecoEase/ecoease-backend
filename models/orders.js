@@ -2,6 +2,9 @@ const { DataTypes } = require('sequelize');
 const { sequelize } = require('./../database')
 const uuid = require('uuid');
 const Location = require('./location');
+const Address = require('./address');
+const User = require('./user');
+const Mitra = require('./mitra');
 
 const Orders = sequelize.define('order', {
     id: {
@@ -45,7 +48,16 @@ const Orders = sequelize.define('order', {
 });
 
 //todo: add relation to address, user, mitra table
-Orders.hasOne(Location, {
-    foreignKey: 'id'
+Orders.belongsTo(Location, {
+    foreignKey: 'location_id'
+})
+Orders.belongsTo(Address, {
+    foreignKey: 'address_id'
+})
+Orders.belongsTo(User, {
+    foreignKey: 'user_id'
+})
+Orders.belongsTo(Mitra, {
+    foreignKey: 'mitra_id'
 })
 module.exports = Orders;

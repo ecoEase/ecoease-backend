@@ -4,13 +4,19 @@ const DetailTransaction = require('../../models/detailTransaction')
 const Garbages = require('../../models/garbage')
 const Orders = require('../../models/orders')
 const Location = require('../../models/location')
+const Address = require('../../models/address')
+const Mitra = require('../../models/mitra')
+const User = require('../../models/user')
 
 const getOrders = async (req, res) => {
     try {
         const { userId, mitraId, id } = req.query
         const includeModels = [
+            { model: Address },
             { model: Garbages },
             { model: Location },
+            { model: Mitra },
+            { model: User },
         ]
         console.log(userId)
         let orders
