@@ -1,12 +1,13 @@
 const Sequelize = require('sequelize');
 const { sequelize } = require('./../database');
 const bcrypt = require('bcrypt');
+const uuid = require('uuid');
 
 const User = sequelize.define('User', {
   id: {
-    type: Sequelize.INTEGER,
+    type: DataTypes.STRING,
     primaryKey: true,
-    autoIncrement: true,
+    defaultValue: uuid.v4,
   },
   firstName: {
     type: Sequelize.STRING,
