@@ -52,7 +52,6 @@ const getOrders = async (req, res) => {
         res.status(500).send(error)
     }
 }
-
 const postOrder = async (req, res) => {
     try {
         const orderResponse = await Orders.create(req.body)
@@ -61,7 +60,6 @@ const postOrder = async (req, res) => {
         res.status(500).send({ message: error })
     }
 }
-
 const postNewOrder = async (req, res) => {
     // begin transaction
     const transaction = await sequelize.transaction()
@@ -94,14 +92,16 @@ const postNewOrder = async (req, res) => {
         res.status(500).send({ message: error })
     }
 }
-
 const updateStatus = async (req, res) => {
     try {
-        const { id, status } = req.body.id
+        const { id, status, mitra_id } = req.body
+        const order = await Orders.findByPk(id)
 
-        if (status == 'NOT_TAKEN' || status == 'CANCELED') return res.status(500).json({ message: `can't update order status to ${status}!` })
+        if (status == 'NOT_TAKEN' || status == 'TAKEN' || status == 'CANCELED') return res.status(500).json({ message: `can't update order status to ${status}!` })
 
         if (mitra_id == null) return res.status(500).json({ message: "can't update order where is not picked by mitra" })
+
+        if (order.mitra_id != mitra_id) return res.status(500).json({ message: "not authorized mitra!" })
 
         const result = await Orders.update(
             { status: status },
