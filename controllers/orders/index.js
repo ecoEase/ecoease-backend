@@ -18,7 +18,7 @@ const getOrders = async (req, res) => {
             { model: Mitra },
             { model: User },
         ]
-        console.log(userId)
+
         let orders
 
         if (userId) {
@@ -44,18 +44,19 @@ const getOrders = async (req, res) => {
             orders = await Orders.findAll({
                 include: includeModels
             })
-            return res.status(200).json({ data: orders })
         }
 
-        return res.status(200).json({ data: orders })
+        if (orders.length == 0) return res.status(404).json({ message: "Data orders not found" })
+
+        return res.status(200).json({ message: "Success retrieve orders data", data: orders })
     } catch (error) {
-        res.status(500).send(error)
+        res.status(500).send({ message: error })
     }
 }
 const postOrder = async (req, res) => {
     try {
         const orderResponse = await Orders.create(req.body)
-        res.status(200).json({ data: orderResponse })
+        res.status(200).json({ message: "Success post order data", data: orderResponse })
     } catch (error) {
         res.status(500).send({ message: error })
     }
@@ -80,6 +81,7 @@ const postNewOrder = async (req, res) => {
         await transaction.commit()
         res.status(200).json(
             {
+                message: "Success adding new order transaction",
                 data: {
                     order: orderResponse,
                     detailTransactions: detailTransactionsResponse
@@ -97,19 +99,21 @@ const updateStatus = async (req, res) => {
         const { id, status, mitra_id } = req.body
         const order = await Orders.findByPk(id)
 
-        if (status == 'NOT_TAKEN' || status == 'TAKEN' || status == 'CANCELED') return res.status(500).json({ message: `can't update order status to ${status}!` })
+        if (status == 'NOT_TAKEN' || status == 'TAKEN' || status == 'CANCELED') return res.status(500).json({ message: `Can't update order status to ${status}!` })
 
-        if (mitra_id == null) return res.status(500).json({ message: "can't update order where is not picked by mitra" })
+        if (mitra_id == null) return res.status(500).json({ message: "Can't update order where is not picked by mitra" })
 
-        if (order.mitra_id != mitra_id) return res.status(500).json({ message: "not authorized mitra!" })
+        if (order.mitra_id != mitra_id) return res.status(500).json({ message: "Not authorized mitra!" })
+
+        if (orders.length == 0) return res.status(404).json({ message: "Data order not found" })
 
         const result = await Orders.update(
             { status: status },
             { where: { id: id } }
         )
-        res.status(200).json({ data: result })
+        res.status(200).json({ message: "Success update order status", data: result })
     } catch (error) {
-        res.status(500).json(error)
+        res.status(500).json({ message: error })
     }
 }
 
@@ -118,13 +122,15 @@ const pickOrder = async (req, res) => {
         const { id, mitra_id } = req.body
         //check if order has picked by other or not
         const order = await Orders.findByPk(id)
-        if (order.mitra_id != null) return res.status(500).json({ message: "this order already picked by other!" })
+        if (order.mitra_id != null) return res.status(500).json({ message: "This order already picked by other!" })
+
+        if (order.length == 0) return res.status(404).json({ message: "Data order not found!" })
 
         const result = await Orders.update(
             { status: 'TAKEN', mitra_id: mitra_id },
             { where: { id: id } }
         )
-        res.status(200).json({ data: result })
+        res.status(200).json({ message: "Success pick order", data: result })
     } catch (error) {
         res.status(500).json({ message: error })
     }
@@ -137,13 +143,15 @@ const canceledOrder = async (req, res) => {
 
         if (order.mitra_id != null && order.mitra_id != mitra_id) return res.status(500).json({ message: "can't canceled order when order is already picked!" })
 
+        if (order.length == 0) return res.status(404).json({ message: "Data order not found" })
+
         const result = await Orders.update(
             { status: 'CANCELED' },
             { where: { id: id } }
         )
-        res.status(200).json({ data: result })
+        res.status(200).json({ message: "Success canceled order", data: result })
     } catch (error) {
-        res.status(500).json(error)
+        res.status(500).json({ message: error })
     }
 }
 

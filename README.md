@@ -34,12 +34,14 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 
 ### **Address** 🔑
 
-| Usage        | Endpoint                              |
-| ------------ | ------------------------------------- |
-| Add New      | POST http://ecoease.api/address       |
-| Retrieve All | GET http://ecoease.api/address        |
-| Update       | PUT http://ecoease.api/address/:id    |
-| Delete       | DELETE http://ecoease.api/address/:id |
+| Usage                  | Endpoint                                    |
+| ---------------------- | ------------------------------------------- |
+| Add New                | POST http://ecoease.api/address             |
+| Retrieve All           | GET http://ecoease.api/address              |
+| Retrieve All by UserId | GET http://ecoease.api/address?userId=value |
+| Use Saved Address      | PUT http://ecoease.api/address/use/:id      |
+| Update                 | PUT http://ecoease.api/address/:id          |
+| Delete                 | DELETE http://ecoease.api/address/:id       |
 
 ### **Detail Transaction** 🔑
 

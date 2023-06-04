@@ -1,10 +1,11 @@
+const { where } = require('sequelize');
 const Address = require('../../models/address');
 
 const createAddress = async (req, res) => {
   try {
     const newAddress = req.body;
     const result = await Address.create(newAddress);
-    res.status(200).json({ message: 'Berhasil menambahkan alamat', address: result });
+    res.status(200).json({ message: 'Success adding new address', address: result });
   } catch (error) {
     res.status(500).json(error);
   }
@@ -12,8 +13,17 @@ const createAddress = async (req, res) => {
 
 const getAddress = async (req, res) => {
   try {
-    const address = await Address.findAll();
-    res.status(200).json(address);
+    const { userId } = req.query
+
+    const address = userId ? await Address.findAll({
+      where: { user_id: userId }, order: [
+        ['selected', 'DESC']
+      ]
+    }) : await Address.findAll()
+
+    if (address.length == 0) return res.status(404).json({ message: "Data not found" })
+
+    res.status(200).json({ message: "Success retrieve data", data: address });
   } catch (error) {
     res.status(500).send(error);
   }
@@ -56,9 +66,22 @@ const deleteAddress = async (req, res) => {
   }
 };
 
+const useAddress = async (req, res) => {
+  try {
+    const { id } = req.params
+    const selectedAddress = await Address.findByPk(id)
+    const unselectAddressesFromSameUser = await Address.update({ selected: false }, { where: { user_id: selectedAddress.user_id } })
+    const response = await selectedAddress.update({ selected: true })
+    res.status(200).json({ data: response })
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
 module.exports = {
   createAddress,
   getAddress,
   updateAddress,
   deleteAddress,
+  useAddress
 };

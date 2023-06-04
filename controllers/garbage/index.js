@@ -4,18 +4,21 @@ const createGarbages = async (req, res) => {
   try {
     const newGarbages = req.body;
     const result = await Garbage.create(newGarbages);
-    res.status(200).json(result);
+    res.status(200).json({ message: "Success add new garbage", data: result });
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json({ message: error });
   }
 };
 
 const getGarbages = async (req, res) => {
   try {
     const garbages = await Garbage.findAll();
-    res.status(200).json(garbages);
+
+    if (garbages.length == 0) return res.status(404).json({ message: "Data garbage not found" })
+
+    res.status(200).json({ message: "Success retrieve garbage data", data: garbages });
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).send({ message: error });
   }
 };
 
@@ -34,7 +37,7 @@ const updateGarbages = async (req, res) => {
 
     res.status(200).json({ message: 'Garbage updated successfully' });
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json({ message: error });
   }
 };
 
@@ -52,7 +55,7 @@ const deleteGarbages = async (req, res) => {
 
     res.status(200).json({ message: 'Garbage deleted successfully' });
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json({ message: error });
   }
 };
 

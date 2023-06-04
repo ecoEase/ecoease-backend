@@ -13,6 +13,7 @@ const Address = sequelize.define(
     name: {
       type: Sequelize.STRING,
       allowNull: false,
+      unique: true,
     },
     detail: {
       type: Sequelize.STRING,
