@@ -1,4 +1,6 @@
 const Login = require('../../models/login');
+const jwt = require('jsonwebtoken');
+const User = require('../../models/user');
 
 // Handler untuk login user
 async function loginUser(req, res) {
@@ -18,9 +20,11 @@ async function loginUser(req, res) {
     if (!isPasswordValid) {
       return res.status(400).json({ message: 'Password salah' });
     }
-
+    const secret = 'please change this secret later!'
+    const token = jwt.sign({ user }, secret, { expiresIn: "7d" })
+    const userFullData = await User.findOne({ where: { email } });
     // Jika login berhasil
-    res.status(200).json({ message: 'Login sukses', data: user });
+    res.status(200).json({ message: 'Login sukses', data: userFullData, token: token });
   } catch (error) {
     console.error('Error logging in:', error);
     res.status(500).json({ message: 'Error logging in' });
