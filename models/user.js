@@ -27,10 +27,6 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  address: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
   url_photo_profile: {
     type: DataTypes.STRING,
     allowNull: true,

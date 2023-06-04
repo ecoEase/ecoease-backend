@@ -12,6 +12,6 @@ const upload = multer({
   },
 });
 
-router.post('/', upload.single('photoFile'), ImgUpload.uploadToGcs, registerController.registerUser);
+router.post('/', upload.single('photoFile'), ImgUpload.uploadToGcs, registerUser);
 
 module.exports = router;

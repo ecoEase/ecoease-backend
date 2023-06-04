@@ -20,7 +20,7 @@ async function loginUser(req, res) {
     }
 
     // Jika login berhasil
-    res.status(200).json({ message: 'Login sukses' });
+    res.status(200).json({ message: 'Login sukses', data: user });
   } catch (error) {
     console.error('Error logging in:', error);
     res.status(500).json({ message: 'Error logging in' });

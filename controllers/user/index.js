@@ -3,9 +3,9 @@ const User = require('../../models/user');
 const ImgUpload = require('../../imgupload/imgUpload');
 
 async function registerUser(req, res) {
-  const { firstName, lastName, email, password, address, phone_number } = req.body;
+  const { firstName, lastName, email, password, phone_number } = req.body;
 
-  if (!firstName || !lastName || !email || !password || !address || !phone_number) {
+  if (!firstName || !lastName || !email || !password || !phone_number) {
     return res.status(400).json({ message: 'All fields are required' });
   }
 
@@ -31,8 +31,7 @@ async function registerUser(req, res) {
       firstName,
       lastName,
       email,
-      password: hashedPassword,
-      address,
+      password: password,
       url_photo_profile,
       phone_number,
     });

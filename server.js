@@ -14,14 +14,14 @@ const { requireAuth } = require('./middlewares/auth')
 const app = express();
 
 app.use(express.json());
-app.use('/', registerRoutes);
+app.use('/register', registerRoutes);
+app.use('/login', loginRoutes);
 app.use('/address', requireAuth, addressRoutes);
 app.use('/detail-transactions', requireAuth, detailTransactionRoutes)
 app.use('/garbage', requireAuth, garbageRoutes);
 app.use('/locations', requireAuth, locationRoutes)
 app.use('/mitra', mitraRoutes);
 app.use('/orders', requireAuth, orderRoutes)
-app.use('/login', requireAuth, loginRoutes);
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
