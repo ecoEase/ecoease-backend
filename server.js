@@ -14,14 +14,12 @@ const app = express();
 
 app.use(express.json());
 app.use('/', registerRoutes);
+app.use('/mitra', mitraRoutes);
 app.use('/locations', requireAuth, locationRoutes)
 app.use('/detail-transactions', requireAuth, detailTransactionRoutes)
 app.use('/orders', requireAuth, orderRoutes)
-app.use('/mitra', requireAuth, mitraRoutes);
 app.use('/address', requireAuth, addressRoutes);
-
-//garbage
-app.use('/garbage', garbageRoutes);
+app.use('/garbage', requireAuth, garbageRoutes);
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
