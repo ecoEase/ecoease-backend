@@ -4,13 +4,13 @@ const moment = require('moment');
 
 const pathKey = path.resolve('./serviceaccountkey.json');
 
-// TODO: Sesuaikan konfigurasi Storage
+//bisa diganti kalau mau deploy //testing
 const gcs = new Storage({
-  projectId: 'submission-mgce-m-alfitroh',
+  projectId: 'submission-mgce-m-alfitroh', 
   keyFilename: pathKey,
 });
 
-// TODO: Tambahkan nama bucket yang digunakan
+ //bisa diganti kalau mau deploy //testing
 const bucketName = 'money-tracker-bucket22';
 const bucket = gcs.bucket(bucketName);
 
