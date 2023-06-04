@@ -1,8 +1,9 @@
 const bcrypt = require('bcrypt');
 const User = require('../../models/user');
+const ImgUpload = require('../../imgupload/imgUpload');
 
 async function registerUser(req, res) {
-  const { firstName, lastName, email, password, address, url_photo_profile, phone_number } = req.body;
+  const { firstName, lastName, email, password, address, phone_number } = req.body;
 
   if (!firstName || !lastName || !email || !password || !address || !phone_number) {
     return res.status(400).json({ message: 'All fields are required' });
@@ -20,6 +21,11 @@ async function registerUser(req, res) {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
+
+    let url_photo_profile = null;
+    if (req.file && req.file.cloudStoragePublicUrl) {
+      url_photo_profile = req.file.cloudStoragePublicUrl;
+    }
 
     await User.create({
       firstName,
