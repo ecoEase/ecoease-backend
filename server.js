@@ -7,6 +7,7 @@ const orderRoutes = require('./routes/order');
 const garbageRoutes = require('./routes/garbage');
 const mitraRoutes = require('./routes/mitra');
 const addressRoutes = require('./routes/address');
+const loginRoutes = require('./routes/login');
 //middleware
 const { requireAuth } = require('./middlewares/auth')
 
@@ -20,6 +21,7 @@ app.use('/garbage', requireAuth, garbageRoutes);
 app.use('/locations', requireAuth, locationRoutes)
 app.use('/mitra', mitraRoutes);
 app.use('/orders', requireAuth, orderRoutes)
+app.use('/login', requireAuth, loginRoutes);
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
