@@ -27,7 +27,7 @@ async function registerUser(req, res) {
       url_photo_profile = req.file.cloudStoragePublicUrl;
     }
 
-    await User.create({
+    const user = await User.create({
       firstName,
       lastName,
       email,
@@ -36,7 +36,7 @@ async function registerUser(req, res) {
       phone_number,
     });
 
-    res.json({ message: 'Registration successful' });
+    res.json({ message: 'Registration successful', data: user });
   } catch (error) {
     console.error('Error registering user:', error);
     res.status(500).json({ message: 'Error registering user' });
