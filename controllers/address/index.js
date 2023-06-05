@@ -60,7 +60,7 @@ const deleteAddress = async (req, res) => {
       return res.status(404).json({ message: 'Address not found' });
     }
 
-    res.status(200).json({ message: 'Address deleted successfully' });
+    res.status(200).json({ message: 'Address deleted successfully', data: rowsDeleted });
   } catch (error) {
     res.status(500).json(error);
   }
@@ -70,9 +70,17 @@ const useAddress = async (req, res) => {
   try {
     const { id } = req.params
     const selectedAddress = await Address.findByPk(id)
+    if (selectedAddress.length == 0) return res.status(404).json({ message: "Address not found" })
+
     const unselectAddressesFromSameUser = await Address.update({ selected: false }, { where: { user_id: selectedAddress.user_id } })
+
     const response = await selectedAddress.update({ selected: true })
-    res.status(200).json({ data: response })
+    const updatedAddresses = await Address.findAll({
+      where: { user_id: selectedAddress.user_id }, order: [
+        ['selected', 'DESC']
+      ]
+    })
+    res.status(200).json({ message: `Succes use ${response.name} addresss`, data: updatedAddresses })
   } catch (error) {
     res.status(500).json(error)
   }
