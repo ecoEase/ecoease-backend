@@ -28,7 +28,6 @@ const getOrders = async (req, res) => {
                     where: { user_id: userId }
                 }
             )
-            return res.status(200).json({ data: orders })
         } else if (mitraId) {
             orders = await Orders.findAll(
                 {
@@ -65,8 +64,12 @@ const postNewOrder = async (req, res) => {
     // begin transaction
     const transaction = await sequelize.transaction()
     try {
+        // insert location data for order data
+        const location = req.body.location
+        const locationResponse = location ? await Location.create(location) : null
         // insert to order table
         const order = req.body.order
+        order.location_id = locationResponse ? locationResponse.id : null
         const orderResponse = await Orders.create(order)
         const order_id = orderResponse.id
         // insert to detail transaction table
@@ -84,6 +87,7 @@ const postNewOrder = async (req, res) => {
                 message: "Success adding new order transaction",
                 data: {
                     order: orderResponse,
+                    location: location,
                     detailTransactions: detailTransactionsResponse
                 }
             }
