@@ -6,11 +6,11 @@ const pathKey = path.resolve('./serviceaccountkey.json');
 
 //bisa diganti kalau mau deploy //testing
 const gcs = new Storage({
-  projectId: 'submission-mgce-m-alfitroh', 
+  projectId: 'submission-mgce-m-alfitroh',
   keyFilename: pathKey,
 });
 
- //bisa diganti kalau mau deploy //testing
+//bisa diganti kalau mau deploy //testing
 const bucketName = 'money-tracker-bucket22';
 const bucket = gcs.bucket(bucketName);
 
@@ -24,7 +24,9 @@ ImgUpload.uploadToGcs = (req, res, next) => {
   if (!req.file) return next();
 
   const gcsname = moment().format('YYYYMMDDHHmmss') + '-' + req.file.originalname;
+  console.log(gcsname)
   const file = bucket.file(gcsname);
+
 
   const stream = file.createWriteStream({
     metadata: {

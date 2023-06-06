@@ -3,6 +3,7 @@ const orderController = require('../../controllers/orders')
 
 router.get('/', orderController.getOrders)
 router.post('/', orderController.postOrder)
+router.get('/available', orderController.getAvailableOrders)
 router.post('/with-detail-transactions', orderController.postNewOrder)
 router.put('/pickup', orderController.pickOrder)
 router.put('/cancel', orderController.canceledOrder)

@@ -52,6 +52,57 @@ const getOrders = async (req, res) => {
         res.status(500).send({ message: `error: ${error.message}` })
     }
 }
+const getAvailableOrders = async (req, res) => {
+    try {
+        const { userId, mitraId, id } = req.query
+        const includeModels = [
+            { model: Address },
+            { model: Garbages },
+            { model: Location },
+            { model: Mitra },
+            { model: User },
+        ]
+
+        let orders
+
+        if (userId) {
+            orders = await Orders.findAll(
+                {
+                    include: includeModels,
+                    where: {
+                        user_id: userId, status: 'NOT_TAKEN'
+                    }
+                }
+            )
+        } else if (mitraId) {
+            orders = await Orders.findAll(
+                {
+                    include: includeModels,
+                    where: {
+                        mitra_id: mitraId, status: 'NOT_TAKEN'
+                    }
+                }
+            )
+        } else if (id) {
+            orders = await Orders.findByPk(id,
+                {
+                    include: includeModels, where: { status: 'NOT_TAKEN' }
+                },
+            )
+        } else {
+            orders = await Orders.findAll({
+                include: includeModels, where: { status: 'NOT_TAKEN' }
+            })
+        }
+
+        if (orders.length == 0) return res.status(404).json({ message: "Data orders not found" })
+
+        return res.status(200).json({ message: "Success retrieve orders data", data: orders })
+    } catch (error) {
+        res.status(500).send({ message: `error: ${error.message}` })
+    }
+}
+
 const postOrder = async (req, res) => {
     try {
         const orderResponse = await Orders.create(req.body)
@@ -166,4 +217,5 @@ module.exports = {
     updateStatus,
     pickOrder,
     canceledOrder,
+    getAvailableOrders
 }
