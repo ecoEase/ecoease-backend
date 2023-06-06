@@ -36,6 +36,11 @@ const Address = sequelize.define(
       allowNull: false,
       defaultValue: false,
     },
+    deleted: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
     createdAt: {
       field: 'created_at',
       type: Sequelize.DATE,

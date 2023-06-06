@@ -16,7 +16,7 @@ const getAddress = async (req, res) => {
     const { userId } = req.query
 
     const address = userId ? await Address.findAll({
-      where: { user_id: userId }, order: [
+      where: { user_id: userId, deleted: false }, order: [
         ['selected', 'DESC']
       ]
     }) : await Address.findAll()
@@ -52,15 +52,14 @@ const deleteAddress = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const rowsDeleted = await Address.destroy({
-      where: { id },
-    });
+    const address = await Address.findByPk(id)
 
-    if (rowsDeleted === 0) {
+    if (address === 0) {
       return res.status(404).json({ message: 'Address not found' });
     }
+    await address.update({ deleted: true })
 
-    res.status(200).json({ message: 'Address deleted successfully', data: rowsDeleted });
+    res.status(200).json({ message: 'Address deleted successfully', data: address });
   } catch (error) {
     res.status(500).json(error);
   }

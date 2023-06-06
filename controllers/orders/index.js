@@ -49,7 +49,7 @@ const getOrders = async (req, res) => {
 
         return res.status(200).json({ message: "Success retrieve orders data", data: orders })
     } catch (error) {
-        res.status(500).send({ message: error })
+        res.status(500).send({ message: `error: ${error.message}` })
     }
 }
 const postOrder = async (req, res) => {
@@ -57,7 +57,7 @@ const postOrder = async (req, res) => {
         const orderResponse = await Orders.create(req.body)
         res.status(200).json({ message: "Success post order data", data: orderResponse })
     } catch (error) {
-        res.status(500).send({ message: error })
+        res.status(500).send({ message: `error: ${error.message}` })
     }
 }
 const postNewOrder = async (req, res) => {
@@ -95,7 +95,7 @@ const postNewOrder = async (req, res) => {
     } catch (error) {
         // cancel transaction
         await transaction.rollback()
-        res.status(500).send({ message: error })
+        res.status(500).send({ message: `error: ${error.message}` })
     }
 }
 const updateStatus = async (req, res) => {
@@ -117,18 +117,19 @@ const updateStatus = async (req, res) => {
         )
         res.status(200).json({ message: "Success update order status", data: result })
     } catch (error) {
-        res.status(500).json({ message: error })
+        res.status(500).json({ message: `error: ${error.message}` })
     }
 }
-
 const pickOrder = async (req, res) => {
     try {
         const { id, mitra_id } = req.body
         //check if order has picked by other or not
         const order = await Orders.findByPk(id)
+        const mitra = await Mitra.findByPk(mitra_id)
         if (order.mitra_id != null) return res.status(500).json({ message: "This order already picked by other!" })
 
         if (order.length == 0) return res.status(404).json({ message: "Data order not found!" })
+        if (mitra.length == 0) return res.status(404).json({ message: "Data mitra not found!" })
 
         const result = await Orders.update(
             { status: 'TAKEN', mitra_id: mitra_id },
@@ -136,10 +137,9 @@ const pickOrder = async (req, res) => {
         )
         res.status(200).json({ message: "Success pick order", data: result })
     } catch (error) {
-        res.status(500).json({ message: error })
+        res.status(500).json({ message: `error: ${error.message}` })
     }
 }
-
 const canceledOrder = async (req, res) => {
     try {
         const { id, mitra_id } = req.body
@@ -155,7 +155,7 @@ const canceledOrder = async (req, res) => {
         )
         res.status(200).json({ message: "Success canceled order", data: result })
     } catch (error) {
-        res.status(500).json({ message: error })
+        res.status(500).json({ message: `error: ${error.message}` })
     }
 }
 

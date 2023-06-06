@@ -21,7 +21,7 @@ async function registerMitra(req, res) {
       url_photo_profile = req.file.cloudStoragePublicUrl;
     }
 
-    await Mitra.create({
+    const data = await Mitra.create({
       first_name,
       last_name,
       email,
@@ -30,13 +30,24 @@ async function registerMitra(req, res) {
       url_photo_profile,
     });
 
-    res.json({ message: 'Registration successful' });
+    res.json({ message: 'Registration successful', data: data });
   } catch (error) {
     console.error('Error registering user:', error);
     res.status(500).json({ message: 'Error registering user' });
   }
 }
 
+async function getMitras(req, res) {
+  try {
+    const data = await Mitra.findAll()
+    res.status(200).json({ message: "Success retrieve all mitra data", data: data })
+  } catch (error) {
+    console.error('Error registering user:', error);
+    res.status(500).json({ message: `Error registering user ${error.message}` });
+  }
+}
+
 module.exports = {
   registerMitra,
+  getMitras
 };

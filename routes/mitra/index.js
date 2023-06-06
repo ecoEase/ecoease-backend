@@ -13,5 +13,6 @@ const upload = multer({
 });
 
 router.post('/', upload.single('photoFile'), ImgUpload.uploadToGcs, mitraController.registerMitra);
+router.get('/', mitraController.getMitras);
 
 module.exports = router;
