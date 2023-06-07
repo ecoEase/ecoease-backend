@@ -160,7 +160,7 @@ const updateStatus = async (req, res) => {
 
         if (order.mitra_id != mitra_id) return res.status(500).json({ message: "Not authorized mitra!" })
 
-        if (orders.length == 0) return res.status(404).json({ message: "Data order not found" })
+        if (order.length == 0) return res.status(404).json({ message: "Data order not found" })
 
         const result = await Orders.update(
             { status: status },
@@ -200,11 +200,14 @@ const canceledOrder = async (req, res) => {
 
         if (order.length == 0) return res.status(404).json({ message: "Data order not found" })
 
-        const result = await Orders.update(
+        const result = mitra_id && order.mitra_id == null ? await Orders.update(
+            { status: 'CANCELED', mitra_id: mitra_id },
+            { where: { id: id } }
+        ) : await Orders.update(
             { status: 'CANCELED' },
             { where: { id: id } }
         )
-        res.status(200).json({ message: "Success canceled order", data: result })
+        res.status(200).json({ message: `Success canceled order ${mitra_id ? "by mitra " + mitra_id : ""}`, data: result })
     } catch (error) {
         res.status(500).json({ message: `error: ${error.message}` })
     }
