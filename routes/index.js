@@ -8,6 +8,7 @@ const garbageRoutes = require('./garbage');
 const mitraRoutes = require('./mitra');
 const addressRoutes = require('./address');
 const loginRoutes = require('./login');
+const chatroomRoutes = require('./chatroom');
 //middleware
 const { requireAuth } = require('../middlewares/auth')
 
@@ -21,5 +22,6 @@ router.use('/garbage', requireAuth, garbageRoutes);
 router.use('/locations', requireAuth, locationRoutes)
 router.use('/mitra', mitraRoutes);
 router.use('/orders', requireAuth, orderRoutes)
+router.use('/chatrooms', requireAuth, chatroomRoutes)
 
 module.exports = router

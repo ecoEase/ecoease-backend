@@ -177,8 +177,9 @@ const pickOrder = async (req, res) => {
         const { id, mitra_id } = req.body
         //check if order has picked by other or not
         const order = await Orders.findByPk(id)
+        console.log(mitra_id)
         const mitra = await Mitra.findByPk(mitra_id)
-        if (order.mitra_id != null) return res.status(500).json({ message: "This order already picked by other!" })
+        if (order.mitra_id) return res.status(500).json({ message: "This order already picked by other!" })
 
         if (order.length == 0) return res.status(404).json({ message: "Data order not found!" })
         if (mitra.length == 0) return res.status(404).json({ message: "Data mitra not found!" })
@@ -186,7 +187,7 @@ const pickOrder = async (req, res) => {
         if (order.status != 'NOT_TAKEN') return res.status(500).json({ message: "Can't pickup order where it's not taken" })
 
         const result = await Orders.update(
-            { status: 'TAKEN', mitra_id: mitra_id },
+            { status: 'TAKEN', mitra_id: mitra.id },
             { where: { id: id } }
         )
         res.status(200).json({ message: "Success pick order", data: result })
