@@ -183,6 +183,8 @@ const pickOrder = async (req, res) => {
         if (order.length == 0) return res.status(404).json({ message: "Data order not found!" })
         if (mitra.length == 0) return res.status(404).json({ message: "Data mitra not found!" })
 
+        if (order.status != 'NOT_TAKEN') return res.status(500).json({ message: "Can't pickup order where it's not taken" })
+
         const result = await Orders.update(
             { status: 'TAKEN', mitra_id: mitra_id },
             { where: { id: id } }
