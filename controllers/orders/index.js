@@ -159,6 +159,7 @@ const updateStatus = async (req, res) => {
         if (mitra_id == null) return res.status(500).json({ message: "Can't update order where is not picked by mitra" })
 
         if (order.mitra_id != mitra_id) return res.status(500).json({ message: "Not authorized mitra!" })
+        if (order.status == 'CANCELED' || order.status == 'FINISHED') return res.status(500).json({ message: "Can't update order status, order already canceled or finished" })
 
         if (order.length == 0) return res.status(404).json({ message: "Data order not found" })
 
@@ -195,6 +196,8 @@ const canceledOrder = async (req, res) => {
     try {
         const { id, mitra_id } = req.body
         const order = await Orders.findByPk(id)
+
+        if (order.status == 'FINISHED') return res.status(500).json({ message: "can't cancled order, order already finished" })
 
         if (order.mitra_id != null && order.mitra_id != mitra_id) return res.status(500).json({ message: "can't canceled order when order is already picked!" })
 
