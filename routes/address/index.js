@@ -10,6 +10,7 @@ router.put('/update/:id', addressController.updateAddress);
 router.delete('/delete/:id', addressController.deleteAddress);
 //read
 router.get('/', addressController.getAddress);
+router.get('/selected/:id', addressController.getSelectedAddress);
 router.put('/use/:id', addressController.useAddress)
 
 module.exports = router;

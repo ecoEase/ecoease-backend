@@ -7,7 +7,7 @@ const createAddress = async (req, res) => {
     const result = await Address.create(newAddress);
     res.status(200).json({ message: 'Success adding new address', address: result });
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json({ message: error });
   }
 };
 
@@ -25,7 +25,7 @@ const getAddress = async (req, res) => {
 
     res.status(200).json({ message: "Success retrieve data", data: address });
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).json({ message: error });
   }
 };
 
@@ -44,7 +44,7 @@ const updateAddress = async (req, res) => {
 
     res.status(200).json({ message: 'Address updated successfully' });
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json({ message: error });
   }
 };
 
@@ -61,7 +61,7 @@ const deleteAddress = async (req, res) => {
 
     res.status(200).json({ message: 'Address deleted successfully', data: address });
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json({ message: error });
   }
 };
 
@@ -71,7 +71,7 @@ const useAddress = async (req, res) => {
     const selectedAddress = await Address.findByPk(id)
     if (selectedAddress.length == 0) return res.status(404).json({ message: "Address not found" })
 
-    const unselectAddressesFromSameUser = await Address.update({ selected: false }, { where: { user_id: selectedAddress.user_id } })
+    await Address.update({ selected: false }, { where: { user_id: selectedAddress.user_id } })
 
     const response = await selectedAddress.update({ selected: true })
     const updatedAddresses = await Address.findAll({
@@ -81,7 +81,18 @@ const useAddress = async (req, res) => {
     })
     res.status(200).json({ message: `Succes use ${response.name} addresss`, data: updatedAddresses })
   } catch (error) {
-    res.status(500).json(error)
+    res.status(500).json({ message: error })
+  }
+}
+
+const getSelectedAddress = async (req, res) => {
+  try {
+    const { id } = req.params
+    const selectedAddress = await Address.findOne({ where: { user_id: id, selected: true } })
+    if (!selectedAddress) return res.status(404).json({ message: "Address not found" })
+    res.status(200).json({ message: "Address found", data: selectedAddress })
+  } catch (error) {
+    res.status(500).json({ message: error })
   }
 }
 
@@ -90,5 +101,6 @@ module.exports = {
   getAddress,
   updateAddress,
   deleteAddress,
-  useAddress
+  useAddress,
+  getSelectedAddress
 };
