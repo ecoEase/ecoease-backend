@@ -4,7 +4,7 @@ const { DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const uuid = require('uuid');
 
-const User = sequelize.define('User', {
+const User = sequelize.define('users', {
   id: {
     type: DataTypes.STRING,
     primaryKey: true,
@@ -36,6 +36,10 @@ const User = sequelize.define('User', {
     allowNull: false,
     unique: true,
   },
+  fcm_token: {
+    type: DataTypes.STRING,
+    allowNull: null,
+  }
 });
 //hash password
 User.beforeCreate(async (user) => {

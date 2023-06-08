@@ -9,6 +9,7 @@ const mitraRoutes = require('./mitra');
 const addressRoutes = require('./address');
 const loginRoutes = require('./login');
 const chatroomRoutes = require('./chatroom');
+const fcmRoutes = require('./fcm');
 //middleware
 const { requireAuth } = require('../middlewares/auth')
 
@@ -23,5 +24,6 @@ router.use('/locations', requireAuth, locationRoutes)
 router.use('/mitra', mitraRoutes);
 router.use('/orders', requireAuth, orderRoutes)
 router.use('/chatrooms', requireAuth, chatroomRoutes)
+router.use('/fcm', requireAuth, fcmRoutes)
 
 module.exports = router

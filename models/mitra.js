@@ -30,6 +30,10 @@ const Mitra = sequelize.define('mitras', {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  fcm_token: {
+    type: DataTypes.STRING,
+    allowNull: null,
+  },
   createdAt: {
     field: 'created_at',
     type: DataTypes.DATE,
