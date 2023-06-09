@@ -44,10 +44,8 @@ const Mitra = sequelize.define('mitras', {
   },
 });
 
-// Hook function to hash the password before saving
-Mitra.beforeCreate(async (user) => {
-  const hashedPassword = await bcrypt.hash(user.password, 10);
-  user.password = hashedPassword;
-});
+Mitra.prototype.comparePassword = async function (password) {
+  return await bcrypt.compare(password, this.password);
+};
 
 module.exports = Mitra;
