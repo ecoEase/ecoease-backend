@@ -162,7 +162,7 @@ const updateStatus = async (req, res) => {
 
         if (status == 'NOT_TAKEN' || status == 'TAKEN' || status == 'CANCELED') return res.status(500).json({ message: `Can't update order status to ${status}!` })
 
-        if (mitra_id == null) return res.status(500).json({ message: "Can't update order where is not picked by mitra" })
+        if (order.mitra_id == null) return res.status(500).json({ message: "Can't update order where is not picked by mitra" })
 
         if (order.mitra_id != mitra_id) return res.status(500).json({ message: "Not authorized mitra!" })
         if (order.status == 'CANCELED' || order.status == 'FINISHED') return res.status(500).json({ message: "Can't update order status, order already canceled or finished" })

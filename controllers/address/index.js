@@ -54,7 +54,7 @@ const deleteAddress = async (req, res) => {
 
     const address = await Address.findByPk(id)
 
-    if (address === 0) {
+    if (!address) {
       return res.status(404).json({ message: 'Address not found' });
     }
     await address.update({ deleted: true })
@@ -69,7 +69,7 @@ const useAddress = async (req, res) => {
   try {
     const { id } = req.params
     const selectedAddress = await Address.findByPk(id)
-    if (selectedAddress.length == 0) return res.status(404).json({ message: "Address not found" })
+    if (!selectedAddress) return res.status(404).json({ message: "Address not found" })
 
     await Address.update({ selected: false }, { where: { user_id: selectedAddress.user_id } })
 
