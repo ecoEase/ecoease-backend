@@ -45,7 +45,11 @@ const getOrders = async (req, res) => {
             })
         }
 
-        if (orders.length == 0) return res.status(404).json({ message: "Data orders not found" })
+        if (!orders && id != null) {//checking for single value when user add id query
+            return res.status(404).json({ message: "Data order not found" })
+        } else if (orders.length == 0) {
+            return res.status(404).json({ message: "Data orders not found" })
+        }
 
         return res.status(200).json({ message: "Success retrieve orders data", data: orders })
     } catch (error) {
