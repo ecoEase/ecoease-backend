@@ -21,13 +21,13 @@ async function loginUser(req, res) {
       return res.status(400).json({ message: 'Password salah' });
     }
     const secret = 'please change this secret later!'
-    // const token = jwt.sign({ user }, secret, { expiresIn: "7d" })
+    const token = jwt.sign({ user }, secret, { expiresIn: "7d" })
     const userFullData = await User.findOne({ where: { email } });
     // Jika login berhasil
-    res.status(200).json({ message: 'Login sukses', data: userFullData });
+    res.status(200).json({ message: 'Login sukses', data: userFullData, token: token });
   } catch (error) {
     console.error('Error logging in:', error);
-    res.status(500).json({ message: 'Error logging in' });
+    res.status(500).json({ message: `Error logging in ${error}` });
   }
 }
 

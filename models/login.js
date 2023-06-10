@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const { sequelize } = require('./../database');
 
-const Login = sequelize.define('User', {
+const Login = sequelize.define('users', {
   email: {
     type: DataTypes.STRING,
     allowNull: false,
