@@ -3,9 +3,9 @@ const Mitra = require('../../models/mitra');
 const ImgUpload = require('../../imgupload/imgUpload');
 
 async function registerMitra(req, res) {
-  const { first_name, last_name, email, password, address } = req.body;
+  const { first_name, last_name, email, password } = req.body;
 
-  if (!first_name || !last_name || !email || !password || !address) {
+  if (!first_name || !last_name || !email || !password) {
     return res.status(400).json({ message: 'All fields are required' });
   }
 
@@ -26,7 +26,6 @@ async function registerMitra(req, res) {
       last_name,
       email,
       password: hashedPassword,
-      address,
       url_photo_profile,
     });
 

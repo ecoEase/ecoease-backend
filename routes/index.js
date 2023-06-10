@@ -8,6 +8,7 @@ const garbageRoutes = require('./garbage');
 const mitraRoutes = require('./mitra');
 const addressRoutes = require('./address');
 const loginRoutes = require('./login');
+const loginMitraRoutes = require('./loginmitra');
 const chatroomRoutes = require('./chatroom');
 const fcmRoutes = require('./fcm');
 //middleware
@@ -17,6 +18,7 @@ const router = express.Router();
 
 router.use('/register', registerRoutes);
 router.use('/login', loginRoutes);
+router.use('/login-mitra', loginMitraRoutes);
 router.use('/address', requireAuth, addressRoutes);
 router.use('/detail-transactions', requireAuth, detailTransactionRoutes)
 router.use('/garbage', requireAuth, garbageRoutes);
