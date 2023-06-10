@@ -95,7 +95,7 @@ const getAvailableOrders = async (req, res) => {
             })
         }
 
-        if (orders.length == 0) return res.status(404).json({ message: "Data orders not found" })
+        if (!orders) return res.status(404).json({ message: "Data orders not found" })
 
         return res.status(200).json({ message: "Success retrieve orders data", data: orders })
     } catch (error) {
@@ -154,6 +154,8 @@ const updateStatus = async (req, res) => {
         const { id, status, mitra_id } = req.body
         const order = await Orders.findByPk(id)
 
+        if (!order) return res.status(404).json({ message: "Data order not found" })
+
         if (status == 'NOT_TAKEN' || status == 'TAKEN' || status == 'CANCELED') return res.status(500).json({ message: `Can't update order status to ${status}!` })
 
         if (mitra_id == null) return res.status(500).json({ message: "Can't update order where is not picked by mitra" })
@@ -161,7 +163,6 @@ const updateStatus = async (req, res) => {
         if (order.mitra_id != mitra_id) return res.status(500).json({ message: "Not authorized mitra!" })
         if (order.status == 'CANCELED' || order.status == 'FINISHED') return res.status(500).json({ message: "Can't update order status, order already canceled or finished" })
 
-        if (order.length == 0) return res.status(404).json({ message: "Data order not found" })
 
         const result = await Orders.update(
             { status: status },
@@ -181,8 +182,8 @@ const pickOrder = async (req, res) => {
         const mitra = await Mitra.findByPk(mitra_id)
         if (order.mitra_id) return res.status(500).json({ message: "This order already picked by other!" })
 
-        if (order.length == 0) return res.status(404).json({ message: "Data order not found!" })
-        if (mitra.length == 0) return res.status(404).json({ message: "Data mitra not found!" })
+        if (!order) return res.status(404).json({ message: "Data order not found!" })
+        if (!mitra) return res.status(404).json({ message: "Data mitra not found!" })
 
         if (order.status != 'NOT_TAKEN') return res.status(500).json({ message: "Can't pickup order where it's not taken" })
 

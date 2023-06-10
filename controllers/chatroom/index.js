@@ -40,7 +40,7 @@ const deleteChatroom = async (req, res) => {
     try {
         const { id } = req.params
         const chatroom = await Chatroom.findByPk(id)
-        if (chatroom.length == 0) res.status(404).json({ message: "no chat room data" })
+        if (!chatroom) res.status(404).json({ message: "no chat room data" })
 
         const result = await Chatroom.destroy({
             where: { id },
