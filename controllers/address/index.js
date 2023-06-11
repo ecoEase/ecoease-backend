@@ -57,7 +57,7 @@ const deleteAddress = async (req, res) => {
     if (!address) {
       return res.status(404).json({ message: 'Address not found' });
     }
-    await address.update({ deleted: true })
+    await address.update({ deleted: true, selected: false })
 
     res.status(200).json({ message: 'Address deleted successfully', data: address });
   } catch (error) {
