@@ -36,6 +36,23 @@ const getChatrooms = async (req, res) => {
     }
 }
 
+
+const getCharoomById = async (req, res) => {
+    const includeModels = [
+        { model: Mitra },
+        { model: User },
+    ]
+    try {
+        const { id } = req.params
+        const result = await Chatroom.findByPk(id, { include: includeModels })
+        if (!result) return res.status(404).json({ message: "no chatroom data" })
+
+        res.status(200).json({ message: "Success post new chatroom", data: result })
+    } catch (error) {
+        res.status(500).json({ message: "Error: " + error })
+    }
+}
+
 const deleteChatroom = async (req, res) => {
     try {
         const { id } = req.params
@@ -54,5 +71,6 @@ const deleteChatroom = async (req, res) => {
 module.exports = {
     getChatrooms,
     postChatroom,
+    getCharoomById,
     deleteChatroom
 };
