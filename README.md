@@ -304,6 +304,136 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 | Update                 | PUT http://ecoease.api/address/:id          |
 | Delete                 | DELETE http://ecoease.api/address/:id       |
 
+### **Example Add new address**
+
+**parameters**
+
+**Request Parameters**
+
+| Parameter | Required | Deskripsi                         |
+| --------- | -------- | --------------------------------- |
+| name      | Yes      | Nama alamat                       |
+| detail    | Yes      | Detail alamat                     |
+| district  | Yes      | Nama distrik                      |
+| city      | Yes      | Nama kota                         |
+| user_id   | Yes      | ID pengguna terkait dengan alamat |
+| selected  | No       | Status pilihan alamat             |
+| deleted   | No       | Status penghapusan alamat         |
+
+**result**
+
+```json
+{
+  "message": "Success adding new address",
+  "address": {
+    "id": "987a94b9-8a75-4171-8182-e39b06c0ed62",
+    "name": "Jl prof herman yohanes989",
+    "detail": "Samping indomraet",
+    "district": "Terban",
+    "city": "yogya",
+    "user_id": "3a627376-b4da-45af-9454-d982ccd4d106",
+    "selected": false,
+    "deleted": false,
+    "updatedAt": "2023-06-13T17:19:08.559Z",
+    "createdAt": "2023-06-13T17:19:08.559Z"
+  }
+}
+```
+
+### **Example update new address**
+
+**parameters**
+
+**Request Parameters**
+
+| Parameter | Required | Deskripsi                         |
+| --------- | -------- | --------------------------------- |
+| name      | Yes      | Nama alamat                       |
+| detail    | Yes      | Detail alamat                     |
+| district  | Yes      | Nama distrik                      |
+| city      | Yes      | Nama kota                         |
+| user_id   | Yes      | ID pengguna terkait dengan alamat |
+| selected  | No       | Status pilihan alamat             |
+| deleted   | No       | Status penghapusan alamat         |
+
+**result**
+
+```json
+{
+  "message": "Address updated successfully"
+}
+```
+
+### **Example get all address**
+
+**result**
+
+```json
+{
+  "message": "Success retrieve data",
+  "data": [
+    {
+      "id": "3a627376-b4da-45af-9454-d982ccd4d106",
+      "name": "asdasdqwe",
+      "detail": "asdad",
+      "district": "asdasd",
+      "city": "zasdasd",
+      "user_id": "test-user",
+      "selected": false,
+      "deleted": true,
+      "createdAt": "2023-06-08T15:19:07.000Z",
+      "updatedAt": "2023-06-13T16:58:00.000Z"
+    },
+    {
+      "id": "44b78a1e-bb5e-4580-91de-e3fece4ddcdd",
+      "name": "qweqwe",
+      "detail": "qweqwe",
+      "district": "qweqwe",
+      "city": "qweqwe",
+      "user_id": "test-user",
+      "selected": false,
+      "deleted": true,
+      "createdAt": "2023-06-08T14:06:59.000Z",
+      "updatedAt": "2023-06-13T16:58:00.000Z"
+    },
+    {
+      "id": "4c5b0dd2-e5b3-4e2b-96eb-a90d505978a5",
+      "name": "test",
+      "detail": "test",
+      "district": "test",
+      "city": "test",
+      "user_id": "test-user",
+      "selected": false,
+      "deleted": true,
+      "createdAt": "2023-06-07T02:54:20.000Z",
+      "updatedAt": "2023-06-13T16:58:00.000Z"
+    }
+  ]
+}
+```
+
+### **Example delete selected address**
+
+**result**
+
+```json
+{
+  "message": "Address deleted successfully",
+  "data": {
+    "id": "987a94b9-8a75-4171-8182-e39b06c0ed62",
+    "name": "Jl prof herman yohanes989",
+    "detail": "Samping indomraet",
+    "district": "gondokusuman",
+    "city": "yogya",
+    "user_id": "3a627376-b4da-45af-9454-d982ccd4d106",
+    "selected": false,
+    "deleted": true,
+    "createdAt": "2023-06-13T17:19:08.000Z",
+    "updatedAt": "2023-06-13T17:27:55.892Z"
+  }
+}
+```
+
 ### **Detail Transaction** 🔑
 
 | Usage              | Endpoint                                   |
