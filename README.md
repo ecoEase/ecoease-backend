@@ -10,7 +10,38 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 | -------- | -------------------------------- |
 | Register | POST http://ecoease.api/register |
 
-**example**
+### **Example**
+
+**parameters**
+
+| Parameter    | Required | Deskripsi               |
+| ------------ | -------- | ----------------------- |
+| firstName    | Yes      | Nama depan pengguna     |
+| lastName     | Yes      | Nama belakang pengguna  |
+| email        | Yes      | Alamat email pengguna   |
+| address      | Yes      | Alamat lengkap pengguna |
+| photoFile    | No       | File foto pengguna      |
+| phone_number | Yes      | Nomor telepon pengguna  |
+
+**result**
+
+```json
+{
+  "message": "Registration successful",
+  "data": {
+    "id": "522b6362-28bc-42c0-be5d-e0028941d033",
+    "firstName": "johan",
+    "lastName": "hoho",
+    "email": "wth@gmail.com",
+    "password": "$2b$10$OgqfrK.5nMWab1ALH5jPr.mZ0i39lWn5OlZyoXJlSH0LtdGR.oHdy",
+    "url_photo_profile": null,
+    "phone_number": "001245",
+    "updatedAt": "2023-06-13T14:38:21.828Z",
+    "createdAt": "2023-06-13T14:38:21.828Z"
+  }
+}
+```
+
 
 ### **Mitra**
 
