@@ -10,6 +10,8 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 | -------- | -------------------------------- |
 | Register | POST http://ecoease.api/register |
 
+**example**
+
 ### **Mitra**
 
 | Usage    | Endpoint                      |
