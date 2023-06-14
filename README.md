@@ -1121,7 +1121,7 @@ path: api/v1/orders/cancel
 }
 ```
 
-### **Example Retrieve Chat room by mitra ID**
+### **Example delete chat room**
 
 **result**
 
