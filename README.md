@@ -441,6 +441,81 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 | Add New Batch Data | POST http://ecoease.api/detail-transaction |
 | Retrieve All       | GET http://ecoease.api/detail-transaction  |
 
+### **Example Get all detail transactions**
+
+**result**
+
+```json
+{
+  "message": "Success retrieve data",
+  "data": [
+    {
+      "garbage_id": "91c63fc4-4811-45f5-8141-0c345d79aed9",
+      "order_id": "dcc2e120-5947-414a-95b8-c1b475f3b32e",
+      "qty": 1,
+      "total": 400,
+      "createdAt": "2023-06-07T02:54:40.000Z",
+      "updatedAt": "2023-06-07T02:54:40.000Z"
+    },
+    {
+      "garbage_id": "c74667de-9ec4-41b5-8584-9e1ad8967b95",
+      "order_id": "dcc2e120-5947-414a-95b8-c1b475f3b32e",
+      "qty": 1,
+      "total": 200,
+      "createdAt": "2023-06-07T02:54:40.000Z",
+      "updatedAt": "2023-06-07T02:54:40.000Z"
+    },
+    {
+      "garbage_id": "91c63fc4-4811-45f5-8141-0c345d79aed9",
+      "order_id": "53084034-738a-4a4d-9f80-c46a9b5561ba",
+      "qty": 1,
+      "total": 400,
+      "createdAt": "2023-06-08T09:51:02.000Z",
+      "updatedAt": "2023-06-08T09:51:02.000Z"
+    }
+  ]
+}
+```
+
+### **Example Add new Detail Transactions**
+
+**parameters**
+
+**Request Parameters**
+
+| Parameter  | Required | Deskripsi                                |
+| ---------- | -------- | ---------------------------------------- |
+| garbage_id | Yes      | ID sampah yang terkait dengan transaksi  |
+| order_id   | Yes      | ID pesanan yang terkait dengan transaksi |
+| qty        | Yes      | Jumlah sampah dalam transaksi            |
+| total      | Yes      | Total harga transaksi                    |
+
+**result**
+
+```json
+{
+  "message": "Success post batch datas",
+  "data": [
+    {
+      "order_id": "test",
+      "garbage_id": "test-1",
+      "qty": 8,
+      "total": 10,
+      "createdAt": "2023-06-14T17:32:54.828Z",
+      "updatedAt": "2023-06-14T17:32:54.828Z"
+    },
+    {
+      "order_id": "test",
+      "garbage_id": "test-2",
+      "qty": 18,
+      "total": 100,
+      "createdAt": "2023-06-14T17:32:54.828Z",
+      "updatedAt": "2023-06-14T17:32:54.828Z"
+    }
+  ]
+}
+```
+
 ### **Order** 🔑
 
 | Usage                                      | Endpoint                                              |
@@ -455,9 +530,268 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 | Cancel Order                               | PUT http://ecoease.api/order/cancel                   |
 | Updata Order Status (ON_PROCESS, FINISHED) | PUT http://ecoease.api/order/update-status            |
 
+### **Example Get All Orders**
+
+**result**
+
+```json
+{
+  "message": "Success retrieve orders data",
+  "data": [
+    {
+      "id": "adb6caf8-b18d-4abd-b3d0-e0710d6d2bb9",
+      "status": "CANCELED",
+      "total_transaction": 400,
+      "user_id": "test-user",
+      "mitra_id": "7d073efb-67db-4b7e-be20-0774e556deaf",
+      "location_id": "6fd90216-3d8d-4546-a3ee-2c7e396d1e34",
+      "address_id": "4c5b0dd2-e5b3-4e2b-96eb-a90d505978a5",
+      "createdAt": "2023-06-08T10:09:07.000Z",
+      "updatedAt": "2023-06-10T14:09:32.000Z",
+      "address": {
+        "id": "4c5b0dd2-e5b3-4e2b-96eb-a90d505978a5",
+        "name": "test",
+        "detail": "test",
+        "district": "test",
+        "city": "test",
+        "user_id": "test-user",
+        "selected": false,
+        "deleted": true,
+        "createdAt": "2023-06-07T02:54:20.000Z",
+        "updatedAt": "2023-06-14T03:10:28.000Z"
+      },
+      "garbages": [
+        {
+          "id": "91c63fc4-4811-45f5-8141-0c345d79aed9",
+          "type": "Sampah Metal",
+          "price": 400,
+          "url_photo": "https://thumbs.dreamstime.com/z/group-recycling-tins-cans-sample-trash-tin-can-be-recycled-232205994.jpg",
+          "createdAt": "2023-06-07T02:15:32.000Z",
+          "updatedAt": "2023-06-07T02:15:32.000Z",
+          "detailtransaction": {
+            "garbage_id": "91c63fc4-4811-45f5-8141-0c345d79aed9",
+            "order_id": "adb6caf8-b18d-4abd-b3d0-e0710d6d2bb9",
+            "qty": 1,
+            "total": 400,
+            "createdAt": "2023-06-08T10:09:07.000Z",
+            "updatedAt": "2023-06-08T10:09:07.000Z"
+          }
+        }
+      ],
+      "location": {
+        "id": "6fd90216-3d8d-4546-a3ee-2c7e396d1e34",
+        "latitude": -7.9612583,
+        "longitude": 112.6173917,
+        "createdAt": "2023-06-08T10:09:07.000Z",
+        "updatedAt": "2023-06-08T10:09:07.000Z"
+      },
+      "mitra": {
+        "id": "7d073efb-67db-4b7e-be20-0774e556deaf",
+        "first_name": "mitra 1",
+        "last_name": "lastname mitra 1",
+        "email": "pakkepalageng@email.com",
+        "phone_number": null,
+        "password": "$2b$10$JtLgnz0FBeh7Fl3vjbrz5uDO.rGlZybbivBpSVUkw807U8twLJFCy",
+        "url_photo_profile": "https://storage.googleapis.com/money-tracker-bucket22/20230610053138-MyTuning.png",
+        "fcm_token": "eUdCtP_XQ4elBspB9d2u2m:APA91bH93iln7srCL55qX5wFb_Nh4RWbkWYrelFRunxg2WILRcCOZ-QB_sMF3LfwXVTswoo9pQVpXKHQNAIA4jgzlg7w8VwK9qEa5WbqDCQ9uq4lS7LtWnz6Pb9SDhAybphyWvI7zcRd",
+        "createdAt": "2023-06-10T05:31:39.000Z",
+        "updatedAt": "2023-06-13T05:43:36.000Z"
+      },
+      "user": {
+        "id": "test-user",
+        "firstName": "user-1",
+        "lastName": "lastname-1",
+        "email": "user1@email.com",
+        "password": "$2b$10$CxaAauzEdRZ/uaj4i7QrqeyEkUbtzVuHQMTSnPnTyUpih6vHVNoLO",
+        "url_photo_profile": "https://storage.googleapis.com/money-tracker-bucket22/20230604214141-avatar new.png",
+        "phone_number": "081230812312",
+        "fcm_token": "exi3qpnEQ7yM6ZFqywA2KY:APA91bGNQUInnRyGxtpP3AXcUq5IUVn-sF16MhLHemNvEYps-zOxdFVsyMUK1BwY9c3diAiPQ8-VA8UrUlphMERK_DREK5zRzypDvLEzHGCGdOfm3QnFXkOMFcXYoC5sRkPM26mPGNT6",
+        "createdAt": "2023-06-04T14:41:47.000Z",
+        "updatedAt": "2023-06-14T02:43:04.000Z"
+      }
+    }
+  ]
+}
+```
+
+### **Example Get Availables Orders**
+
+**result**
+
+```json
+{
+  "message": "Success retrieve orders data",
+  "data": [
+    {
+      "id": "4821d489-8199-4ada-bea6-4dccd81dd2df",
+      "status": "NOT_TAKEN",
+      "total_transaction": 10000,
+      "user_id": "test-user",
+      "mitra_id": null,
+      "location_id": "cf4fbb4d-d64b-4c1b-a3a7-3f5183371e26",
+      "address_id": "3a627376-b4da-45af-9454-d982ccd4d106",
+      "createdAt": "2023-06-10T06:29:27.000Z",
+      "updatedAt": "2023-06-10T06:29:27.000Z",
+      "address": {
+        "id": "3a627376-b4da-45af-9454-d982ccd4d106",
+        "name": "asdasdqwe",
+        "detail": "asdad",
+        "district": "asdasd",
+        "city": "zasdasd",
+        "user_id": "test-user",
+        "selected": false,
+        "deleted": true,
+        "createdAt": "2023-06-08T15:19:07.000Z",
+        "updatedAt": "2023-06-14T03:10:28.000Z"
+      },
+      "garbages": [
+        {
+          "id": "2d860bdd-689d-4f78-8d1a-cc6ec0474f0b",
+          "type": "Sampah Kaca",
+          "price": 350,
+          "url_photo": "https://just-zero.org/wp-content/uploads/2023/05/shutterstock_1915276312.jpg",
+          "createdAt": "2023-06-07T02:20:39.000Z",
+          "updatedAt": "2023-06-07T02:20:39.000Z",
+          "detailtransaction": {
+            "garbage_id": "2d860bdd-689d-4f78-8d1a-cc6ec0474f0b",
+            "order_id": "4821d489-8199-4ada-bea6-4dccd81dd2df",
+            "qty": 180890,
+            "total": 100,
+            "createdAt": "2023-06-10T06:29:27.000Z",
+            "updatedAt": "2023-06-10T06:29:27.000Z"
+          }
+        },
+        {
+          "id": "91c63fc4-4811-45f5-8141-0c345d79aed9",
+          "type": "Sampah Metal",
+          "price": 400,
+          "url_photo": "https://thumbs.dreamstime.com/z/group-recycling-tins-cans-sample-trash-tin-can-be-recycled-232205994.jpg",
+          "createdAt": "2023-06-07T02:15:32.000Z",
+          "updatedAt": "2023-06-07T02:15:32.000Z",
+          "detailtransaction": {
+            "garbage_id": "91c63fc4-4811-45f5-8141-0c345d79aed9",
+            "order_id": "4821d489-8199-4ada-bea6-4dccd81dd2df",
+            "qty": 18,
+            "total": 100,
+            "createdAt": "2023-06-10T06:29:27.000Z",
+            "updatedAt": "2023-06-10T06:29:27.000Z"
+          }
+        }
+      ],
+      "location": {
+        "id": "cf4fbb4d-d64b-4c1b-a3a7-3f5183371e26",
+        "latitude": 0,
+        "longitude": 0,
+        "createdAt": "2023-06-10T06:29:27.000Z",
+        "updatedAt": "2023-06-10T06:29:27.000Z"
+      },
+      "mitra": null,
+      "user": {
+        "id": "test-user",
+        "firstName": "user-1",
+        "lastName": "lastname-1",
+        "email": "user1@email.com",
+        "password": "$2b$10$CxaAauzEdRZ/uaj4i7QrqeyEkUbtzVuHQMTSnPnTyUpih6vHVNoLO",
+        "url_photo_profile": "https://storage.googleapis.com/money-tracker-bucket22/20230604214141-avatar new.png",
+        "phone_number": "081230812312",
+        "fcm_token": "exi3qpnEQ7yM6ZFqywA2KY:APA91bGNQUInnRyGxtpP3AXcUq5IUVn-sF16MhLHemNvEYps-zOxdFVsyMUK1BwY9c3diAiPQ8-VA8UrUlphMERK_DREK5zRzypDvLEzHGCGdOfm3QnFXkOMFcXYoC5sRkPM26mPGNT6",
+        "createdAt": "2023-06-04T14:41:47.000Z",
+        "updatedAt": "2023-06-14T02:43:04.000Z"
+      }
+    }
+  ]
+}
+```
+
+### **Example Get Order by ID**
+
+**result**
+
+```json
+{
+  "message": "Success retrieve orders data",
+  "data": {
+    "id": "53084034-738a-4a4d-9f80-c46a9b5561ba",
+    "status": "FINISHED",
+    "total_transaction": 400,
+    "user_id": "test-user",
+    "mitra_id": "7d073efb-67db-4b7e-be20-0774e556deaf",
+    "location_id": "9df29858-fbd2-4854-a0a1-f31661f6a57b",
+    "address_id": "4c5b0dd2-e5b3-4e2b-96eb-a90d505978a5",
+    "createdAt": "2023-06-08T09:51:02.000Z",
+    "updatedAt": "2023-06-10T06:25:46.000Z",
+    "address": {
+      "id": "4c5b0dd2-e5b3-4e2b-96eb-a90d505978a5",
+      "name": "test",
+      "detail": "test",
+      "district": "test",
+      "city": "test",
+      "user_id": "test-user",
+      "selected": false,
+      "deleted": true,
+      "createdAt": "2023-06-07T02:54:20.000Z",
+      "updatedAt": "2023-06-14T03:10:28.000Z"
+    },
+    "garbages": [
+      {
+        "id": "91c63fc4-4811-45f5-8141-0c345d79aed9",
+        "type": "Sampah Metal",
+        "price": 400,
+        "url_photo": "https://thumbs.dreamstime.com/z/group-recycling-tins-cans-sample-trash-tin-can-be-recycled-232205994.jpg",
+        "createdAt": "2023-06-07T02:15:32.000Z",
+        "updatedAt": "2023-06-07T02:15:32.000Z",
+        "detailtransaction": {
+          "garbage_id": "91c63fc4-4811-45f5-8141-0c345d79aed9",
+          "order_id": "53084034-738a-4a4d-9f80-c46a9b5561ba",
+          "qty": 1,
+          "total": 400,
+          "createdAt": "2023-06-08T09:51:02.000Z",
+          "updatedAt": "2023-06-08T09:51:02.000Z"
+        }
+      }
+    ],
+    "location": {
+      "id": "9df29858-fbd2-4854-a0a1-f31661f6a57b",
+      "latitude": -7.9612583,
+      "longitude": 112.6173917,
+      "createdAt": "2023-06-08T09:51:02.000Z",
+      "updatedAt": "2023-06-08T09:51:02.000Z"
+    },
+    "mitra": {
+      "id": "7d073efb-67db-4b7e-be20-0774e556deaf",
+      "first_name": "mitra 1",
+      "last_name": "lastname mitra 1",
+      "email": "pakkepalageng@email.com",
+      "phone_number": null,
+      "password": "$2b$10$JtLgnz0FBeh7Fl3vjbrz5uDO.rGlZybbivBpSVUkw807U8twLJFCy",
+      "url_photo_profile": "https://storage.googleapis.com/money-tracker-bucket22/20230610053138-MyTuning.png",
+      "fcm_token": "eUdCtP_XQ4elBspB9d2u2m:APA91bH93iln7srCL55qX5wFb_Nh4RWbkWYrelFRunxg2WILRcCOZ-QB_sMF3LfwXVTswoo9pQVpXKHQNAIA4jgzlg7w8VwK9qEa5WbqDCQ9uq4lS7LtWnz6Pb9SDhAybphyWvI7zcRd",
+      "createdAt": "2023-06-10T05:31:39.000Z",
+      "updatedAt": "2023-06-13T05:43:36.000Z"
+    },
+    "user": {
+      "id": "test-user",
+      "firstName": "user-1",
+      "lastName": "lastname-1",
+      "email": "user1@email.com",
+      "password": "$2b$10$CxaAauzEdRZ/uaj4i7QrqeyEkUbtzVuHQMTSnPnTyUpih6vHVNoLO",
+      "url_photo_profile": "https://storage.googleapis.com/money-tracker-bucket22/20230604214141-avatar new.png",
+      "phone_number": "081230812312",
+      "fcm_token": "exi3qpnEQ7yM6ZFqywA2KY:APA91bGNQUInnRyGxtpP3AXcUq5IUVn-sF16MhLHemNvEYps-zOxdFVsyMUK1BwY9c3diAiPQ8-VA8UrUlphMERK_DREK5zRzypDvLEzHGCGdOfm3QnFXkOMFcXYoC5sRkPM26mPGNT6",
+      "createdAt": "2023-06-04T14:41:47.000Z",
+      "updatedAt": "2023-06-14T02:43:04.000Z"
+    }
+  }
+}
+```
+
 nb: 🔑 mean require header authorization in order to use the API endpoints
 
 ### OTHER API ENDPOINT WILL UPDATE SOON!
+
+```
+
+```
 
 ```
 
