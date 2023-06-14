@@ -871,8 +871,6 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 
 ### **Example Cancel Order**
 
-path:api/v1/orders/cancel
-
 **parameters**
 
 | Parameter | Required | Deskripsi    |
@@ -890,8 +888,6 @@ path:api/v1/orders/cancel
 ```
 
 ### **Example Cancel Order by Mitra**
-
-path:api/v1/orders/cancel
 
 **parameters**
 
@@ -911,8 +907,6 @@ path:api/v1/orders/cancel
 
 ### **Example Pick Up Order**
 
-path:api/v1/orders/pickup
-
 **parameters**
 
 | Parameter | Required | Deskripsi    |
@@ -931,8 +925,6 @@ path:api/v1/orders/pickup
 ```
 
 ### **Example update status Order**
-
-path: api/v1/orders/cancel
 
 **parameters**
 
@@ -1121,7 +1113,7 @@ path: api/v1/orders/cancel
 }
 ```
 
-### **Example delete chat room**
+### **Example Retrieve Chat room by mitra ID**
 
 **result**
 
