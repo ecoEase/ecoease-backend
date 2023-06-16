@@ -6,12 +6,12 @@ const pathKey = path.resolve('./serviceaccountkey.json');
 
 //bisa diganti kalau mau deploy //testing
 const gcs = new Storage({
-  projectId: 'submission-mgce-m-alfitroh',
+  projectId: 'ecoease-389914',
   keyFilename: pathKey,
 });
 
 //bisa diganti kalau mau deploy //testing
-const bucketName = 'money-tracker-bucket22';
+const bucketName = 'ecoease';
 const bucket = gcs.bucket(bucketName);
 
 function getPublicUrl(filename) {
