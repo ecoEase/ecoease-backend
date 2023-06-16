@@ -6,9 +6,9 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 
 ### **User**
 
-| Usage    | Endpoint                         |
-| -------- | -------------------------------- |
-| Register | POST /register |
+| Usage    | Methode | Endpoint  |
+| -------- | ------- | --------- |
+| Register | POST    | /register |
 
 ### **Example**
 
@@ -44,9 +44,9 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 
 ### **Login User**
 
-| Usage    | Endpoint                      |
-| -------- | ----------------------------- |
-| Register | POST /login |
+| Usage    | Method | Endpoint |
+| -------- | ------ | -------- |
+| Register | POST   | /login   |
 
 ### **Example**
 
@@ -80,9 +80,9 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 
 ### **Mitra**
 
-| Usage    | Endpoint                      |
-| -------- | ----------------------------- |
-| Register | POST /mitra |
+| Usage    | Method | Endpoint |
+| -------- | ------ | -------- |
+| Register | POST   | /mitra   |
 
 ### **Example**
 
@@ -119,9 +119,9 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 
 ### **Login Mitra**
 
-| Usage    | Endpoint                            |
-| -------- | ----------------------------------- |
-| Register | POST /login-mitra |
+| Usage    | Method | Endpoint     |
+| -------- | ------ | ------------ |
+| Register | POST   | /login-mitra |
 
 ### **Example**
 
@@ -155,12 +155,12 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 
 ### **Garbage** 🔑
 
-| Usage        | Endpoint                                      |
-| ------------ | --------------------------------------------- |
-| Retrieve All | GET /garbage                |
-| Add New      | POST /garbage               |
-| Delete       | DELETE /garbage/delete/{id} |
-| Edit         | PUT /garbage/update/{id}    |
+| Usage        | Method | Endpoint             |
+| ------------ | ------ | -------------------- |
+| Retrieve All | GET    | /garbage             |
+| Add New      | POST   | /garbage             |
+| Delete       | DELETE | /garbage/delete/{id} |
+| Edit         | PUT    | /garbage/update/{id} |
 
 ### **Example Retrieve All**
 
@@ -238,10 +238,10 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 
 ### **Location** 🔑
 
-| Usage        | Endpoint                         |
-| ------------ | -------------------------------- |
-| Add New      | POST /location |
-| Retrieve All | GET /location  |
+| Usage        | Method | Endpoint  |
+| ------------ | ------ | --------- |
+| Add New      | POST   | /location |
+| Retrieve All | GET    | /location |
 
 ### **Example Retrieve All**
 
@@ -295,14 +295,14 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 
 ### **Address** 🔑
 
-| Usage                  | Endpoint                                    |
-| ---------------------- | ------------------------------------------- |
-| Add New                | POST /address             |
-| Retrieve All           | GET /address              |
-| Retrieve All by UserId | GET /address?userId=value |
-| Use Saved Address      | PUT /address/use/:id      |
-| Update                 | PUT /address/:id          |
-| Delete                 | DELETE /address/:id       |
+| Usage                  | Method | Endpoint              |
+| ---------------------- | ------ | --------------------- |
+| Add New                | POST   | /address              |
+| Retrieve All           | GET    | /address              |
+| Retrieve All by UserId | GET    | /address?userId=value |
+| Use Saved Address      | PUT    | /address/use/:id      |
+| Update                 | PUT    | /address/:id          |
+| Delete                 | DELETE | /address/:id          |
 
 ### **Example Add new address**
 
@@ -436,10 +436,10 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 
 ### **Detail Transaction** 🔑
 
-| Usage              | Endpoint                                   |
-| ------------------ | ------------------------------------------ |
-| Add New Batch Data | POST /detail-transaction |
-| Retrieve All       | GET /detail-transaction  |
+| Usage              | Method | Endpoint            |
+| ------------------ | ------ | ------------------- |
+| Add New Batch Data | POST   | /detail-transaction |
+| Retrieve All       | GET    | /detail-transaction |
 
 ### **Example Get all detail transactions**
 
@@ -518,17 +518,17 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 
 ### **Order** 🔑
 
-| Usage                                      | Endpoint                                              |
-| ------------------------------------------ | ----------------------------------------------------- |
-| Add New                                    | POST /order                         |
-| Retrieve All                               | GET /order                          |
-| Retrieve All by Id                         | GET /order?id=value                 |
-| Retrieve All by User Id                    | GET /order?userId=value             |
-| Retrieve All by Mitra Id                   | GET /order?mitraId=value            |
-| Add New Order with Detail Transaction      | POST /order/with-detail-transaction |
-| Pickup Order                               | PUT /order/pickup                   |
-| Cancel Order                               | PUT /order/cancel                   |
-| Updata Order Status (ON_PROCESS, FINISHED) | PUT /order/update-status            |
+| Usage                                      | Method | Endpoint                       |
+| ------------------------------------------ | ------ | ------------------------------ |
+| Add New                                    | POST   | /order                         |
+| Retrieve All                               | GET    | /order                         |
+| Retrieve All by Id                         | GET    | /order?id=value                |
+| Retrieve All by User Id                    | GET    | /order?userId=value            |
+| Retrieve All by Mitra Id                   | GET    | /order?mitraId=value           |
+| Add New Order with Detail Transaction      | POST   | /order/with-detail-transaction |
+| Pickup Order                               | PUT    | /order/pickup                  |
+| Cancel Order                               | PUT    | /order/cancel                  |
+| Updata Order Status (ON_PROCESS, FINISHED) | PUT    | /order/update-status           |
 
 ### **Example Get All Orders**
 
@@ -1005,12 +1005,12 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 
 ### **Chat Room** 🔑
 
-| Usage              | Endpoint                                             |
-| ------------------ | ---------------------------------------------------- |
-| Add New            | POST /api/v1/chatrooms             |
-| Retrieve All       | GET /api/v1/chatrooms              |
-| Retrieve All by Id | GET /api/v1/chatrooms?mitraId={id} |
-| Delete             | GET /api/v1/chatrooms/delete/id    |
+| Usage              | Method | Endpoint                       |
+| ------------------ | ------ | ------------------------------ |
+| Add New            | POST   | /api/v1/chatrooms              |
+| Retrieve All       | GET    | /api/v1/chatrooms              |
+| Retrieve All by Id | GET    | /api/v1/chatrooms?mitraId={id} |
+| Delete             | GET    | /api/v1/chatrooms/delete/id    |
 
 ### **Example Add new chatroom**
 
@@ -1126,8 +1126,6 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 
 nb: 🔑 mean require header authorization in order to use the API endpoints
 
-
-
 # Testing the API
 
 The server is already running, and you can now test the API using the provided URL. Follow these steps to test the API:
@@ -1146,11 +1144,10 @@ The server is already running, and you can now test the API using the provided U
 
 7. Repeat these steps for different API endpoints or to test different HTTP methods.
 
-
-
 **We are committed to continuously improving and developing this API to meet your needs. If you have any suggestions or feedback, we would greatly appreciate it. Please send us your feedback.**
 
 **Thank you for using the EcoEase API!**
 
 # **Best Regards**,
+
 # ECoEase Team
