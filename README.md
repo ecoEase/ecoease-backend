@@ -1126,10 +1126,11 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 
 nb: 🔑 mean require header authorization in order to use the API endpoints
 
-### OTHER API ENDPOINT WILL UPDATE SOON!
+### Testing the API
+Once the server is running locally, you can test the API using the provided URL. Follow these steps to test the API:
 
 ```
-
+1. Start the Server: Make sure your Node.js server is running locally on port 8080. You can start it by running the appropriate command or script (server.js).
 ```
 
 ```
