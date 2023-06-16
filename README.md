@@ -2,6 +2,23 @@
 
 Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses on a waste issue around us. We try to eliminate this issue by providing an app that can classify garbage type and call "garbage collector" to help the user to cleanup their waste.
 
+## To run locally
+
+1. Install all npm depedency using
+
+```
+npm install
+```
+
+2. Export .sql file to mysql database and name it to order_db
+3. To start run the server run this command in terminal
+
+```
+nodemon server.js
+```
+
+4. Make sure the connection to dabatabase is correct.
+
 ## List APi
 
 ### **User**
