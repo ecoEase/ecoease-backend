@@ -1128,10 +1128,7 @@ nb: 🔑 mean require header authorization in order to use the API endpoints
 
 
 
-### Testing the API
-The server is already running, and you can now test the API using the provided URL. Follow these steps to test the API:
-
-### Testing the API
+# Testing the API
 
 The server is already running, and you can now test the API using the provided URL. Follow these steps to test the API:
 
