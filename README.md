@@ -8,7 +8,7 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 
 | Usage    | Endpoint                         |
 | -------- | -------------------------------- |
-| Register | POST http://ecoease.api/register |
+| Register | POST/register |
 
 ### **Example**
 
@@ -46,7 +46,7 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 
 | Usage    | Endpoint                      |
 | -------- | ----------------------------- |
-| Register | POST http://ecoease.api/login |
+| Register | POST login |
 
 ### **Example**
 
@@ -82,7 +82,7 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 
 | Usage    | Endpoint                      |
 | -------- | ----------------------------- |
-| Register | POST http://ecoease.api/mitra |
+| Register | POST /mitra |
 
 ### **Example**
 
@@ -121,7 +121,7 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 
 | Usage    | Endpoint                            |
 | -------- | ----------------------------------- |
-| Register | POST http://ecoease.api/login-mitra |
+| Register | POST /login-mitra |
 
 ### **Example**
 
@@ -157,10 +157,10 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 
 | Usage        | Endpoint                                      |
 | ------------ | --------------------------------------------- |
-| Retrieve All | GET http://ecoease.api/garbage                |
-| Add New      | POST http://ecoease.api/garbage               |
-| Delete       | DELETE http://ecoease.api/garbage/delete/{id} |
-| Edit         | PUT http://ecoease.api/garbage/update/{id}    |
+| Retrieve All | GET /garbage                |
+| Add New      | POST /garbage               |
+| Delete       | DELETE /garbage/delete/{id} |
+| Edit         | PUT /garbage/update/{id}    |
 
 ### **Example Retrieve All**
 
@@ -240,8 +240,8 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 
 | Usage        | Endpoint                         |
 | ------------ | -------------------------------- |
-| Add New      | POST http://ecoease.api/location |
-| Retrieve All | GET http://ecoease.api/location  |
+| Add New      | POST /location |
+| Retrieve All | GET /location  |
 
 ### **Example Retrieve All**
 
@@ -297,12 +297,12 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 
 | Usage                  | Endpoint                                    |
 | ---------------------- | ------------------------------------------- |
-| Add New                | POST http://ecoease.api/address             |
-| Retrieve All           | GET http://ecoease.api/address              |
-| Retrieve All by UserId | GET http://ecoease.api/address?userId=value |
-| Use Saved Address      | PUT http://ecoease.api/address/use/:id      |
-| Update                 | PUT http://ecoease.api/address/:id          |
-| Delete                 | DELETE http://ecoease.api/address/:id       |
+| Add New                | POST /address             |
+| Retrieve All           | GET /address              |
+| Retrieve All by UserId | GET /address?userId=value |
+| Use Saved Address      | PUT /address/use/:id      |
+| Update                 | PUT /address/:id          |
+| Delete                 | DELETE /address/:id       |
 
 ### **Example Add new address**
 
@@ -438,8 +438,8 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 
 | Usage              | Endpoint                                   |
 | ------------------ | ------------------------------------------ |
-| Add New Batch Data | POST http://ecoease.api/detail-transaction |
-| Retrieve All       | GET http://ecoease.api/detail-transaction  |
+| Add New Batch Data | POST /detail-transaction |
+| Retrieve All       | GET /detail-transaction  |
 
 ### **Example Get all detail transactions**
 
@@ -520,15 +520,15 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 
 | Usage                                      | Endpoint                                              |
 | ------------------------------------------ | ----------------------------------------------------- |
-| Add New                                    | POST http://ecoease.api/order                         |
-| Retrieve All                               | GET http://ecoease.api/order                          |
-| Retrieve All by Id                         | GET http://ecoease.api/order?id=value                 |
-| Retrieve All by User Id                    | GET http://ecoease.api/order?userId=value             |
-| Retrieve All by Mitra Id                   | GET http://ecoease.api/order?mitraId=value            |
-| Add New Order with Detail Transaction      | POST http://ecoease.api/order/with-detail-transaction |
-| Pickup Order                               | PUT http://ecoease.api/order/pickup                   |
-| Cancel Order                               | PUT http://ecoease.api/order/cancel                   |
-| Updata Order Status (ON_PROCESS, FINISHED) | PUT http://ecoease.api/order/update-status            |
+| Add New                                    | POST /order                         |
+| Retrieve All                               | GET /order                          |
+| Retrieve All by Id                         | GET /order?id=value                 |
+| Retrieve All by User Id                    | GET /order?userId=value             |
+| Retrieve All by Mitra Id                   | GET /order?mitraId=value            |
+| Add New Order with Detail Transaction      | POST /order/with-detail-transaction |
+| Pickup Order                               | PUT /order/pickup                   |
+| Cancel Order                               | PUT /order/cancel                   |
+| Updata Order Status (ON_PROCESS, FINISHED) | PUT /order/update-status            |
 
 ### **Example Get All Orders**
 
@@ -1007,10 +1007,10 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 
 | Usage              | Endpoint                                             |
 | ------------------ | ---------------------------------------------------- |
-| Add New            | POST http://ecoease.api/api/v1/chatrooms             |
-| Retrieve All       | GET http://ecoease.api/api/v1/chatrooms              |
-| Retrieve All by Id | GET http://ecoease.api/api/v1/chatrooms?mitraId={id} |
-| Delete             | GET http://ecoease.api/api/v1/chatrooms/delete/id    |
+| Add New            | POST /api/v1/chatrooms             |
+| Retrieve All       | GET /api/v1/chatrooms              |
+| Retrieve All by Id | GET /api/v1/chatrooms?mitraId={id} |
+| Delete             | GET /api/v1/chatrooms/delete/id    |
 
 ### **Example Add new chatroom**
 
@@ -1134,9 +1134,9 @@ The server is already running, and you can now test the API using the provided U
 
 1. Launch your preferred API testing tool, such as Postman or any other application that allows you to make HTTP requests.
 
-2. Set the Base URL to the API endpoint: `http://ecoease.api/register`.
+2. Set the Base URL to the API endpoint: `/register`.
 
-3. Set the request method and URL based on the API endpoint you want to test. For example, if you want to test the `/api/users` endpoint, set the URL to `http://ecoease.api/register/api/users` and choose the appropriate HTTP method (GET, POST, PUT, DELETE).
+3. Set the request method and URL based on the API endpoint you want to test. For example, if you want to test the `/register` endpoint, set the URL to `/register` and choose the appropriate HTTP method (GET, POST, PUT, DELETE).
 
 4. (Optional) If the API requires specific headers or data in the request body, you can add them as request headers. For example, if the API requires an authentication token, add a header named `Authorization` with the token value.
 
