@@ -1126,45 +1126,28 @@ Long short story, EcoEase is one of Bangkit 2023 Capstone projects which focuses
 
 nb: 🔑 mean require header authorization in order to use the API endpoints
 
+
+
 ### Testing the API
-Once the server is running locally, you can test the API using the provided URL. Follow these steps to test the API:
+The server is already running, you can test the API using the provided URL. Follow these steps to test the API:
 
 ```
-1. Start the Server: Make sure your Node.js server is running locally on port 8080. You can start it by running the appropriate command or script (server.js).
+1. Launch Postman and create a new request or you can use other applications for API testing
+```
+2. Set the Base URL to the API link http://ecoease.api/register
+```
+3. Set the Request Method and URL, set the HTTP method to GET, POST, PUT, or DELETE depending on the API endpoint you want to test. Enter the URL for your API, such as http://ecoease.api/register/api/users
+```
+4. (Optional) Add Request Headers, If API requires specific headers or data in the request body (with the key logo), you can add them by clicking the "Headers" tabs in Postman and entering the token (you can get the jwt token from login).
+```
+4. Send the Request, Click the "Send" button to send the API request to server.
+```
+5. Repeat with Different Endpoints or Methods To test other API endpoints or different HTTP methods, create new requests in Postman following the same steps as above.
 ```
 
-```
 
-```
 
-```
+**We are committed to continuously improving and developing this API to meet your needs. If you have any suggestions or feedback, we would greatly appreciate it. Please send us your feedback.**
 
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
+# Thank You
+# ECoEase Team
